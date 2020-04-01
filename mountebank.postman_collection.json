@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "3ae05eb4-673f-4a0a-ab53-e6fa44581f3c",
+		"name": "mountebank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ch02",
+			"item": [
+				{
+					"name": "Add demo imposter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"port\": 3000,\n  \"protocol\": \"http\",\n  \"stubs\": [\n    {\n      \"predicates\": [{ \"equals\": { \"query\": { \"page\": \"2\" } } }],\n      \"responses\": [{\n        \"is\": {\n          \"statusCode\": 200,\n          \"headers\": { \"Content-Type\": \"application/json\" },\n          \"body\": { \"products\": [] }\n        }\n      }]\n    },\n    {\n      \"responses\": [{\n        \"is\": {\n          \"statusCode\": 200,\n          \"headers\": { \"Content-Type\": \"application/json\" },\n          \"body\": {\n            \"products\": [\n              {\n                \"id\": \"2599b7f4\",\n                \"name\": \"The Midas Dogbowl\",\n                \"description\": \"Pure gold\"\n              },\n              {\n                \"id\": \"e1977c9e\",\n                \"name\": \"Fishtank Amore\",\n                \"description\": \"Show your fish some love\"\n              }\n            ],\n            \"_links\": { \"next\": \"/products?page=2&itemsPerPage=2\" }\n          }\n        }\n      }]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2525/imposters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2525",
+							"path": [
+								"imposters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET demo products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET demo prodcuts page 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/products?page=2&itemsPerPage=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "itemsPerPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ch03",
+			"item": [
+				{
+					"name": "Hello world",
+					"item": [
+						{
+							"name": "Add hello world imposter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"statusCode\": 200,\n        \"headers\": {\n          \"Content-Type\": \"text/plain\"\n        },\n        \"body\": \"Hello, world!\"\n      }\n    }]\n  }]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2525/imposters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET hello world",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/anything",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"anything"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Inventory",
+					"item": [
+						{
+							"name": "Add inventory imposter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"port\": 3000,\n  \"protocol\": \"http\",\n  \"stubs\": [\n    {\n      \"responses\": [\n        { \"is\": { \"body\": \"54\" } },\n        { \"is\": { \"body\": \"21\" } },\n        { \"is\": { \"body\": \"0\" } }\n      ]\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2525/imposters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET inventory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/inventory/12345",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"inventory",
+										"12345"
+									]
+								},
+								"description": "Calling get inventory will cycle throuhg a list of result counting down from 54,21,0. It will start repeating once it's got to the end. (Can cycle be stopped?)"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Add default 418 imposter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"statusCode\": 417,\n        \"headers\": {\n          \"Content-Type\": \"text/plain\"\n        },\n        \"body\": \"No imposter found that matches the request.\\nCauses are:\\n1. you have forgotten to add an imposter\\n2. your imposter is not matching the request correctly\\n3. software under test has done something unexpected\"\n      }\n    }]\n  }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2525/imposters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2525",
+							"path": [
+								"imposters"
+							]
+						},
+						"description": "If no imposter is matched you will get a 418.\nCauses are:\n1. you have forgotten to add an imposter\n2. your imposter is not match the request correctly\n3. software under test has done something unexpected"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ch04",
+			"item": [
+				{
+					"name": "Add complex imposter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"predicates\": [{\n      \"or\": [\n        { \"equals\": { \"path\": \"/identities/123\" } },\n        {\n          \"and\": [\n            { \"equals\": { \"path\": \"/identities\" } },\n            {\n              \"and\": [\n                { \"contains\": { \"query\": { \"q\": \"Frank\" } } },\n                { \"contains\": { \"query\": { \"q\": \"Williams\" } } },\n                { \"not\": { \"exists\": { \"query\": { \"page\": true } } } }\n              ]\n            }\n          ]\n        }\n      ]\n    }],\n    \"responses\": [{\n      \"is\": {\n        \"body\": { \"identities\": [{\n          \"name\": \"Frank Williams\",\n          \"career\": \"Doctor\",\n          \"location\": \"Georgia\"\n        }] }\n      }\n    }]\n  }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2525/imposters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2525",
+							"path": [
+								"imposters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query Full Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/identities?q=Frank+Williams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"identities"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Frank+Williams"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query multiple",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/identities?q=Frank&q=Williams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"identities"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Frank"
+								},
+								{
+									"key": "q",
+									"value": "Williams"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/identities/123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"identities",
+								"123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query with Page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/identities?q=Frank+Williams&page=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"identities"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Frank+Williams"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "This should not return anything"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ch07",
+			"item": [
+				{
+					"name": "Copying",
+					"item": [
+						{
+							"name": "Add copy data imposter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"body\": {\n          \"id\": \"$ID[1]\",\n          \"name\": \"Brandon Byars\",\n          \"description\": \"Devilishly handsome\",\n          \"height\": \"Lots of it\",\n          \"relationshipStatus\": \"Available upon request\"\n        }\n      },\n      \"_behaviors\": {\n        \"copy\": [{\n          \"from\": \"path\",\n          \"into\": \"$ID\",\n          \"using\": {\n            \"method\": \"regex\",\n            \"selector\": \"accounts/(\\\\w+)\"\n          }\n        }]\n      }\n    }]\n  }]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2525/imposters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET with copied ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/accounts/5ea4d2b5/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"accounts",
+										"5ea4d2b5",
+										"profile"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Lookup",
+					"item": [
+						{
+							"name": "Add lookup data imposter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"statusCode\": \"${row}['statusCode']\",\n        \"body\": {\n          \"errors\": [{\n            \"code\": \"${row}['errorCode']\",\n            \"message\": \"${row}['errorMessage']\"\n          }]\n        }\n      },\n      \"_behaviors\": {\n        \"lookup\": [{\n          \"key\": {\n            \"from\": \"body\",\n            \"using\": {\n              \"method\": \"jsonpath\",\n              \"selector\": \"$..name\"\n            }\n          },\n          \"fromDataSource\": {\n            \"csv\": {\n              \"path\": \"accounts.csv\",\n              \"keyColumn\": \"name\"\n            }\n          },\n          \"into\": \"${row}\"\n        }]\n      }\n    }]\n  }]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2525/imposters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add account with error",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Kip Brady\",\n    \"occupation\": \"actor\",\n    \"age\": 37\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/accounts",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"accounts"
+									]
+								},
+								"description": "0. name,statusCode,errorCode,errorMessage\n1. Tom Larsen,500,serverError,An unexpected error occurred on the server\n2. Kip Brady,400,duplicateEntry,User already exists\n3. Mary Reynolds,400,tooYoung,You must be 18 years old to register\n4. Harry Smith,503,serverBusy,Server currently unavailable"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Repeating",
+					"item": [
+						{
+							"name": "Add repeating imposter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"port\": 3000,\n  \"protocol\": \"http\",\n  \"stubs\": [\n    {\n      \"responses\": [\n        {\n          \"is\": {\n            \"body\": \"This will repeat 2 times\"\n          },\n          \"_behaviors\": {\n            \"repeat\": 2\n          }\n        },\n        {\n          \"is\": {\n            \"body\": \"Then this will return\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:2525/imposters",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET repeat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Add decorator imposter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"body\": {\n          \"givenName\": \"Stubby\",\n          \"surname\": \"McStubble\",\n          \"birthDate\": \"1980-01-01\"\n        }\n      },\n      \"_behaviors\": {\n        \"decorate\": \"function (request, response, logger) { response.body.timestamp = new Date(); }\"\n      }\n    }]\n  }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:2525/imposters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2525",
+							"path": [
+								"imposters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET with decorator - new timestamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "List the imposters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=utf-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:2525/imposters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2525",
+					"path": [
+						"imposters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE All imposters",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:2525/imposters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2525",
+					"path": [
+						"imposters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Config",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:2525/config",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2525",
+					"path": [
+						"config"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
