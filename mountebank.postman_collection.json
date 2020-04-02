@@ -488,7 +488,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"statusCode\": \"${row}['statusCode']\",\n        \"body\": {\n          \"errors\": [{\n            \"code\": \"${row}['errorCode']\",\n            \"message\": \"${row}['errorMessage']\"\n          }]\n        }\n      },\n      \"_behaviors\": {\n        \"lookup\": [{\n          \"key\": {\n            \"from\": \"body\",\n            \"using\": {\n              \"method\": \"jsonpath\",\n              \"selector\": \"$..name\"\n            }\n          },\n          \"fromDataSource\": {\n            \"csv\": {\n              \"path\": \"accounts.csv\",\n              \"keyColumn\": \"name\"\n            }\n          },\n          \"into\": \"${row}\"\n        }]\n      }\n    }]\n  }]\n}",
+									"raw": "{\n  \"protocol\": \"http\",\n  \"port\": 3000,\n  \"recordRequests\": true,\n  \"stubs\": [{\n    \"responses\": [{\n      \"is\": {\n        \"statusCode\": \"${row}['statusCode']\",\n        \"body\": {\n          \"errors\": [{\n            \"code\": \"${row}['errorCode']\",\n            \"message\": \"${row}['errorMessage']\"\n          }]\n        }\n      },\n      \"_behaviors\": {\n        \"lookup\": [{\n          \"key\": {\n            \"from\": \"body\",\n            \"using\": {\n              \"method\": \"jsonpath\",\n              \"selector\": \"$..name\"\n            }\n          },\n          \"fromDataSource\": {\n            \"csv\": {\n              \"path\": \"accounts.csv\",\n              \"keyColumn\": \"name\"\n            }\n          },\n          \"into\": \"${row}\"\n        }]\n      }\n    }]\n  }]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -542,6 +542,52 @@
 									]
 								},
 								"description": "0. name,statusCode,errorCode,errorMessage\n1. Tom Larsen,500,serverError,An unexpected error occurred on the server\n2. Kip Brady,400,duplicateEntry,User already exists\n3. Mary Reynolds,400,tooYoung,You must be 18 years old to register\n4. Harry Smith,503,serverBusy,Server currently unavailable"
+							},
+							"response": []
+						},
+						{
+							"name": "GET Record of requests",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3680c178-9511-4ec4-8472-d8c7249cdbce",
+										"exec": [
+											"",
+											"pm.test(\"Request for Kip\", function () {",
+											"    ",
+											"    var jsonData = JSON.parse(responseBody);",
+											"",
+											"    console.log(jsonData.requests[jsonData.numberOfRequests -1]);",
+											"    ",
+											"    var lastRequest = jsonData.requests[jsonData.numberOfRequests -1];",
+											"    var body = JSON.parse(lastRequest.body);",
+											"    ",
+											"    console.log(body);",
+											"    ",
+											"    pm.expect(body.name).to.eql(\"Kip Brady\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:2525/imposters/3000/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "2525",
+									"path": [
+										"imposters",
+										"3000",
+										""
+									]
+								}
 							},
 							"response": []
 						}
