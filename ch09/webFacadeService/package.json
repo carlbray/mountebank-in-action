@@ -9,20 +9,20 @@
     "test": "grunt"
   },
   "dependencies": {
-    "ejs": "~2.5.1",
+    "ejs": "~3.1.10",
     "errorhandler": "^1.0.0",
-    "express": "~4.15.3",
-    "mountebank": "^1.13.0",
+    "express": "~4.20.0",
+    "mountebank": "^2.9.1",
     "q": "~1.5.0",
-    "request": "^2.79.0",
+    "request": "^2.88.2",
     "request-promise-any": "^1.0.3"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.5.3",
     "grunt-cli": "^1.2.0",
     "grunt-mocha-test": "~0.13.2",
     "grunt-mountebank": "1.0.5",
-    "mocha": "~3.4.1",
+    "mocha": "~10.8.2",
     "sinon": "^4.1.2"
   }
 }
